@@ -26,7 +26,7 @@ fdescribe('Heroes', () => {
 
   it('should add hero and display in list', async () =>
   {
-    const {container,debug} = await renderComponent();
+    const {container} = await renderComponent();
     const user = userEvent.setup();
     const fakehero = "Fake Hero";
 
@@ -37,8 +37,6 @@ fdescribe('Heroes', () => {
     await user.click(addButton);
 
     const addedHero = await screen.findAllByText(fakehero);
-    // debug(addedHero);
-
 
     const thing = 2;
     expect(addedHero).toBeTruthy();
@@ -46,12 +44,10 @@ fdescribe('Heroes', () => {
 
   it('should delete hero and display correctly', async () =>
   {
-    const {container,debug} = await renderComponent();
+    const {container} = await renderComponent();
     const user = userEvent.setup();
 
     const deleteButtons = await screen.findAllByText('x');
-    debug(deleteButtons);
-
     await user.click(deleteButtons[0]);
 
     const heroesList = await findHeroesList(container);
